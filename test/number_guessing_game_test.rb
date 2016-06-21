@@ -10,4 +10,8 @@ class NumberGuessingGameTest < MiniTest::Test
   def test_game_exists
     assert game
   end
+
+  def test_welcome_msg
+    assert_equal "Welcome to the Number Guessing Game.", game.welcome
+  end
 end
