@@ -17,18 +17,18 @@ class NumberGuessingGameTest < MiniTest::Test
 
   def test_rand_number
     # skip # skip when number is actually generated; 50 is a default value
-    assert_equal 50, game.random_number
+    assert (1..100).include?(game.random_number)
   end
 
   def test_check_guess_got_it
-    assert_equal "You got it!", game.play(50)
+    assert_equal "You got it!", game.check_guess(50, 50, [])
   end
 
   def test_check_guess_too_high
-    assert_equal "Too high", game.play(75)
+    assert_equal "Too high", game.check_guess(50, 75, [])
   end
 
   def test_check_guess_too_low
-    assert_equal "Too low", game.play(25)
+    assert_equal "Too low", game.check_guess(50, 25, [])
   end
 end

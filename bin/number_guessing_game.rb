@@ -1,36 +1,40 @@
 class Game
+
   def welcome
     "Welcome to the Number Guessing Game."
   end
 
   def prompt
-    # gets.chomp.to_i
-    50 # test value
+    gets.chomp.to_i
+    # 50 # test value
   end
 
   def random_number
-    number = 50 # default for testing
-    # number = rand(1..100)
+    rand(1..100)
   end
 
-  def check_guess(number, guess, guesses)
-    if guess > random_number
-      guesses.push(guess)
+  def check_guess(actual_number, guessed_number, guesses_array)
+    if guessed_number > actual_number
+      guesses_array.push(guessed_number)
       "Too high"
-    elsif guess < random_number
-      guesses.push(guess)
+    elsif guessed_number < actual_number
+      guesses_array.push(guessed_number)
       "Too low"
     else
       "You got it!"
     end
   end
 
-  def play(num)
+  def play(number = random_number)
     welcome
     guesses = []
-    number = random_number
-    check_guess(number, num, guesses)
-    #loop here for guesses
+
+    while guesses.length < 6
+      num = prompt
+      response = check_guess(number, num, guesses)
+      puts response
+      break if response == "You got it!"
+    end
   end
 end
 
