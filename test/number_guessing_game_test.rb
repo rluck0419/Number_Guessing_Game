@@ -20,7 +20,15 @@ class NumberGuessingGameTest < MiniTest::Test
     assert_equal 50, game.random_number
   end
 
-  def test_play
-    assert_equal "Welcome to the Number Guessing Game.", game.play
+  def test_check_guess_got_it
+    assert_equal "You got it!", game.play(50)
+  end
+
+  def test_check_guess_too_high
+    assert_equal "Too high", game.play(75)
+  end
+
+  def test_check_guess_too_low
+    assert_equal "Too low", game.play(25)
   end
 end
