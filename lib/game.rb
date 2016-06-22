@@ -60,7 +60,7 @@ class Game
           whoops = true
         end
       end
-      puts "Wrong way!" if whoops
+      puts "Wrong way! Don't waste your guesses!" if whoops
 
       response = check_guess(number, num, guesses)
       # system('clear')

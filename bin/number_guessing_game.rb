@@ -1,3 +1,3 @@
-require_relative '../lib/guessing_game.rb'
+require_relative '../lib/game.rb'
 
 Game.new.play
