@@ -58,11 +58,6 @@ class Game
         system('clear')
       end
 
-      # this doesn't always work as intended
-      # e.g. random number = 55
-      # guess 1 = 50 - too low
-      # guess 2 = 75 - too high
-      # --> "wrong way" because difference 2 > difference 1 (20 > 5)
       whoops = false
       guesses.each do |guess|
         diff_current = number - num
