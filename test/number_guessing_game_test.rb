@@ -13,7 +13,13 @@ class NumberGuessingGameTest < MiniTest::Test
 
   def test_welcome_msg
     # this will fail by default: see '../lib/game.rb' line 6
+    # welcome message & header has now changed as well
     assert_equal "Welcome to the Number Guessing Game.", game.welcome
+  end
+
+  def test_header
+    # this too will fail by default: see '../lib/game.rb' line 34
+    assert_equal "The Number Guessing Game.", game.make_header
   end
 
   def test_rand_number

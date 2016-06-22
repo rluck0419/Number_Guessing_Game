@@ -2,10 +2,10 @@ class Game
 
   def welcome
     system('clear')
-    # for testing:
-    "Welcome to the Number Guessing Game."
-    #
-    # puts "Welcome to the Number Guessing Game."
+    # previously for testing:
+    # "Welcome to the Number Guessing Game."
+    make_header
+    puts "\nWelcome to the Number Guessing Game.\nCan you guess the secret number?\n\n"
   end
 
   def prompt
@@ -30,9 +30,24 @@ class Game
     end
   end
 
+  def make_header
+    # "The Number Guessing Game."
+    puts "The Number Guessing Game."
+  end
+
   def display_guesses(guessed_nums)
     guessed = guessed_nums.join(", ")
     "Guessed so far: #{guessed}"
+  end
+
+  def guessed_already
+    puts "\nReally? You already tried that.\n\n"
+    puts display_guesses(guesses)
+  end
+
+  def invalid_input
+    puts "\nSorry? It's not that hard.\n\n"
+    puts display_guesses(guesses) unless guesses.empty?
   end
 
   def play(number = random_number)
@@ -42,18 +57,16 @@ class Game
     while guesses.length < 5
       num = prompt
       system('clear')
-      puts "The Number Guessing Game"
+      make_header
 
       while guesses.include?(num)
-        puts "\nReally? You already tried that.\n\n"
-        puts display_guesses(guesses)
+        guessed_already
         num = prompt
         system('clear')
       end
 
       while num == 0 || num > 100
-        puts "\nSorry? It's not that hard.\n\n"
-        puts display_guesses(guesses) unless guesses.empty?
+        invalid_input
         num = prompt
         system('clear')
       end
