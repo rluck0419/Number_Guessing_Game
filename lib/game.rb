@@ -2,7 +2,10 @@ class Game
 
   def welcome
     system('clear')
-    puts "Welcome to the Number Guessing Game."
+    # for testing:
+    "Welcome to the Number Guessing Game."
+    #
+    # puts "Welcome to the Number Guessing Game."
   end
 
   def prompt
@@ -39,32 +42,46 @@ class Game
     while guesses.length < 5
       num = prompt
       system('clear')
-
-      while num == 0 || num > 100
-        puts "Sorry? It's not that hard."
-        puts display_guesses(guesses) unless guesses.empty?
-        num = prompt
-      end
+      puts "The Number Guessing Game"
 
       while guesses.include?(num)
-        puts "Really? You already tried that."
+        puts "\nReally? You already tried that.\n\n"
         puts display_guesses(guesses)
         num = prompt
+        system('clear')
       end
 
+      while num == 0 || num > 100
+        puts "\nSorry? It's not that hard.\n\n"
+        puts display_guesses(guesses) unless guesses.empty?
+        num = prompt
+        system('clear')
+      end
+
+      # this doesn't always work as intended
+      # e.g. random number = 55
+      # guess 1 = 50 - too low
+      # guess 2 = 75 - too high
+      # --> "wrong way" because difference 2 > difference 1 (20 > 5)
       whoops = false
       guesses.each do |guess|
         diff_current = number - num
         diff_prev = number - guess
-        if diff_current.abs > diff_prev.abs
-          whoops = true
+        if diff_current > 0 && diff_prev > 0
+          if diff_current > diff_prev
+            whoops = true
+          end
+        elsif diff_current < 0 && diff_prev < 0
+          if diff_current < diff_prev
+            whoops = true
+          end
         end
       end
-      puts "Wrong way! Don't waste your guesses!" if whoops
+      print "Wasting your guesses, huh?" if whoops
 
       response = check_guess(number, num, guesses)
       # system('clear')
-      puts "You guessed #{num}: #{response}"
+      puts "\nYou guessed #{num}: #{response}\n\n"
       break if response == "You got it!"
       puts display_guesses(guesses)
     end

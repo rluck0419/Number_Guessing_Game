@@ -12,6 +12,7 @@ class NumberGuessingGameTest < MiniTest::Test
   end
 
   def test_welcome_msg
+    # this will fail by default: see '../lib/game.rb' line 6
     assert_equal "Welcome to the Number Guessing Game.", game.welcome
   end
 
